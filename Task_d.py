@@ -65,7 +65,6 @@ def main():
                 y2 = -(x2 - m - (SIZE - 1))
                 g.add_clause([ -(x1 * SIZE + y1 + 1), -(x2 * SIZE + y2 + 1) ])
 
-    #g.add_clause([50])
     g.solve()
     solution = g.get_model()
 
