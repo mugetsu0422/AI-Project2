@@ -132,4 +132,5 @@ def main():
     
 if __name__ == "__main__":
     main()
+    print('Level1_CNF.txt and Level2_CNF.txt files have been created!')
     input()

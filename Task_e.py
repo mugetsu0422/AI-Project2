@@ -1,8 +1,4 @@
-
-# from operator import truediv
-# import queue
-# import math
-# import re
+from operator import truediv
 
 
 SIZE = 8
@@ -103,7 +99,7 @@ def is_valid(board):
                 return False
     return True
 
-# Heruistic
+# Heuristic
 def heuristic_value(queens):
     h = 0
     board = [[ False for i in range(SIZE) ] for j in range(SIZE)]
@@ -155,14 +151,21 @@ def A_star(board, queens):
     queue.append(queens)
     current = []
 
-    while len(queue) > 0 :
+    while len(queue) > 0 :  # Check if the queue is empty or not
 
-        current = queue.pop(0)
+        current = queue.pop(0)  # Get the current state in the queue
+
+        # Initial the current state and check if is the goal state or not
         board = initial_state_2(current)
-
         if is_goal(board, current):
             return current
         
+
+        # From line 168 to line 177
+        # When we get the index of successor, we will add it to the current state 
+        #   (current state will will have the index of queens that we have placed before).
+        # Each valid index we found will be added to queue. The queue will have the list of 
+        #   indexes of queens that we can place.
         successors = get_suitable_cell(board)
 
         for item in successors:
@@ -174,7 +177,8 @@ def A_star(board, queens):
                 for item in current:
                     temp.append(item)
 
-                queue.append(temp)
+                queue.append(temp)  # The queue saves the index of cell(s) that can place queen(s), but it is 
+                                    #   sorted base on the heuristic value after placing all the queen in current.
                 current.pop()
         queue = sort_queue(queue)
 
